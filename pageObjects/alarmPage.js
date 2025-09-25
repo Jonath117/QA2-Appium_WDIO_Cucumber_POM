@@ -30,6 +30,7 @@ class AlarmPage {
   async openAlarmTab() {
     await this.alarmTab.waitForDisplayed({ timeout: 5000 });
     await this.alarmTab.click();
+    await browser.takeScreenshot();
   }
 
   async createAlarm(hour, minute) {
@@ -40,6 +41,7 @@ class AlarmPage {
     await this.minuteElement(minute).click();
 
     await this.okBtn.click();
+    await browser.takeScreenshot();
   }
 
   async isAlarmDisplayed(time) {
@@ -54,8 +56,10 @@ class AlarmPage {
 
     await this.hour(hour).click();
     await this.minute(minute).click();
+    await browser.takeScreenshot();
 
     await this.cancelBtn.click();
+    await browser.takeScreenshot();
   }
 
   async deleteAlarm(time) {
@@ -72,6 +76,7 @@ class AlarmPage {
     const delBtn = await this.deleteBtn();
     await delBtn.waitForDisplayed({ timeout: 5000 });
     await delBtn.click();
+    await browser.takeScreenshot();
   }
 
 }

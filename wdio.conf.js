@@ -21,6 +21,14 @@ exports.config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
+
+    user: process.env.BROWSERSTACK_USERNAME || 'jonathanrochacon_4rsWDw',
+    key: process.env.BROWSERSTACK_ACCESS_KEY || 'Mh34fzLKEeWkknXKDHzG',
+    hostname: 'hub.browserstack.com',
+    port: 443,
+    path: '/wd/hub',
+    protocol: 'https',
+
     specs: [
         // ToDo: define location for spec files here
         './features/**/*.feature'
@@ -45,21 +53,31 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on an Android Emulator
-        "platformName": "Android",
-        "appium:platformVersion": "16.0",
-        "appium:deviceName": "Medium Phone API 36.0",
-        "appium:automationName": "UiAutomator2",
-        "appium:appPackage": "com.google.android.deskclock",
-        "appium:appActivity": "com.android.deskclock.DeskClock"
-    }],
+    capabilities: [
+    {
+        platformName: 'android',
+        'appium:automationName': 'UiAutomator2',
+
+        // 🔹 APK subida a BrowserStack
+        'appium:app': 'bs://0d7bc5773d49c8ebe4ed2b3d795e4df1ec5cc88e',
+
+        // 🔹 Opciones de BrowserStack
+        'bstack:options': {
+            deviceName: 'Samsung Galaxy S22 Ultra',  // dispositivo real en la nube
+            osVersion: '12.0',
+            projectName: 'Proyecto QA',
+            buildName: 'Build Alarmas',
+            sessionName: 'Prueba APK Alarmas',
+            local: false  // si no necesitas BrowserStack Local
+        }
+    }
+   ],
 
     //
     // ===================
@@ -108,7 +126,15 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['appium'],
+    services: ['appium',
+    [
+      'browserstack',
+      {
+        buildIdentifier: "${BUILD_NUMBER}",
+        browserstackLocal: true
+      },
+    ]
+    ],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
