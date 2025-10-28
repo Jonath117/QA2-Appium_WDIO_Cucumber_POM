@@ -36,7 +36,7 @@ pipeline {
         steps {
             // Usa la herramienta nombrada 'Allure' que configuraste en Jenkins
             tool 'Allure'
-            bat 'allure generate allure-results --clean -o allure-report'
+            bat 'npx allure generate allure-results --clean -o allure-report'
         }
     }
     }
