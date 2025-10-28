@@ -17,6 +17,7 @@ pipeline {
         
         stage('Instalar Dependencias') {
             steps {
+                bat 'npm install @wdio/browserstack-service'
                 bat 'npm install'
             }
         }
