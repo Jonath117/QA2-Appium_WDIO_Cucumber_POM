@@ -4,6 +4,9 @@ pipeline {
     // ⚠️ Importante: Define las variables de entorno de BrowserStack usando las credenciales de Jenkins
     environment {
         BROWSERSTACK_CREDS = credentials('BROWSERSTACK_CREDS')
+        // Carpeta absoluta para resultados y reportes
+        ALLURE_RESULTS = "${env.WORKSPACE}/allure-results"
+        ALLURE_REPORT  = "${env.WORKSPACE}/allure-report"
     }
 
     stages {
