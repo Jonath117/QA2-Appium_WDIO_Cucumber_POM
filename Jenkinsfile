@@ -3,9 +3,7 @@ pipeline {
     
     // ⚠️ Importante: Define las variables de entorno de BrowserStack usando las credenciales de Jenkins
     environment {
-        // Debes reemplazar 'BROWSERSTACK_USERNAME_ID' y 'BROWSERSTACK_KEY_ID' con los IDs que definiste en Jenkins.
-        BROWSERSTACK_USERNAME = credentials('BROWSERSTACK_CREDS') 
-        BROWSERSTACK_ACCESS_KEY = credentials('BROWSERSTACK_CREDS')
+        BROWSERSTACK_CREDS = credentials('BROWSERSTACK_CREDS')
     }
 
     stages {
@@ -29,7 +27,7 @@ pipeline {
                 
                 // ⚠️ Se ejecuta WDIO, que automáticamente usará las variables BROWSERSTACK_USERNAME y BROWSERSTACK_ACCESS_KEY 
                 // definidas en la sección 'environment' del pipeline.
-                bat 'npx wdio run wdio.conf.js'
+                bat "set BROWSERSTACK_USERNAME=%BROWSERSTACK_CREDS_USR% && set BROWSERSTACK_ACCESS_KEY=%BROWSERSTACK_CREDS_PSW% && npx wdio run wdio.conf.js"
             }
         }
         
@@ -41,17 +39,16 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            echo 'Pipeline finalizada.'
-            // Publica el reporte Allure (requiere el plugin de Allure en Jenkins)
-            allure(report: 'allure-report', results: ['allure-results'])
-        }
-        failure {
-            echo '¡Las pruebas fallaron!'
-        }
-        success {
-            echo 'Pruebas exitosas.'
-        }
+post {
+    always {
+        echo 'Publicando reporte Allure en Jenkins...'
+        // Utiliza la sintaxis simple de Allure, con el path de la GENERACIÓN del reporte.
+        // Aquí debes apuntar al directorio de salida que usaste arriba: 'allure-report'
+        allure(report: 'allure-report', results: ['allure-results'])
     }
+    failure {
+        echo '¡Las pruebas fallaron!'
+    }
+    // ...
+}
 }
