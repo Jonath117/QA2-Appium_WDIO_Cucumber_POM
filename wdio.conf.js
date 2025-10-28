@@ -91,7 +91,7 @@ capabilities: [{
         // ------------------------------------------------------
         // DEBES subir tu APK/IPA a BrowserStack y obtener un ID (bs://...)
         // Si no tienes una APP, BrowserStack usará un navegador móvil.
-        app: 'bs://<Tu_App_ID_de_BrowserStack_Aquí>', 
+        app: 'bs://0afeab8c83904919b63bf75358c9742c44c27602', 
         
         // Opciones adicionales útiles para la ejecución en BrowserStack:
         projectName: 'Mi Proyecto QA',
