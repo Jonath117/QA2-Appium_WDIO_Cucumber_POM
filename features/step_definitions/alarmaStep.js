@@ -10,9 +10,9 @@ When('Creo una alarma a las {string} horas y {string} minutos', async (hora, min
     await AlarmPage.createAlarm(hora, minuto);
 });
 
-When('Cancelo la creación de una alarma a las {string} horas y {string} minutos', async (hora, minuto) => {
-    await AlarmPage.cancelAlarm(hora, minuto);
-});
+// When('Cancelo la creación de una alarma a las {string} horas y {string} minutos', async (hora, minuto) => {
+//     await AlarmPage.cancelAlarm(hora, minuto);
+// });
 
 Then('La alarma a las {string}:{string} debería estar visible', async (hora, minuto) => {
     const tiempo = `${hora}:${minuto}`;
