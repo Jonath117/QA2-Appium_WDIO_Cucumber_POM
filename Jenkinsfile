@@ -19,7 +19,7 @@ pipeline {
         
         stage('Instalar Dependencias') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         
@@ -29,14 +29,14 @@ pipeline {
                 
                 // ⚠️ Se ejecuta WDIO, que automáticamente usará las variables BROWSERSTACK_USERNAME y BROWSERSTACK_ACCESS_KEY 
                 // definidas en la sección 'environment' del pipeline.
-                sh 'npx wdio run wdio.conf.js'
+                bat 'npx wdio run wdio.conf.js'
             }
         }
         
         stage('Generar Reporte Allure') {
             steps {
                 // Si tienes un fallo, Allure genera los resultados.
-                sh 'npx allure generate allure-results --clean -o allure-report'
+                bat 'npx allure generate allure-results --clean -o allure-report'
             }
         }
     }
@@ -45,7 +45,7 @@ pipeline {
         always {
             echo 'Pipeline finalizada.'
             // Publica el reporte Allure (requiere el plugin de Allure en Jenkins)
-            allure report: 'allure-report', results: ['allure-results']
+            allure(report: 'allure-report', results: ['allure-results'])
         }
         failure {
             echo '¡Las pruebas fallaron!'
