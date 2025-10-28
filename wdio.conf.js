@@ -63,7 +63,7 @@ exports.config = {
     
 // wdio.conf.js (ejemplo)
     // ...
-    hostname: 'hub.browserstack.com',
+    hostname: 'hub-cloud.browserstack.com',
     port: 443, // o 80 para conexiones no seguras
     // ...
     
