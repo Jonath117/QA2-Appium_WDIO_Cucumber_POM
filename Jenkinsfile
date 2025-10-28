@@ -31,21 +31,25 @@ pipeline {
             }
         }
         
-        stage('Generar Reporte Allure') {
-            steps {
-                // Si tienes un fallo, Allure genera los resultados.
-                bat 'npx allure generate allure-results --clean -o allure-report'
-            }
+    stage('Generar Reporte Allure') {
+        steps {
+            // Usa la herramienta nombrada 'Allure' que configuraste en Jenkins
+            tool 'Allure'
+            bat 'allure generate allure-results --clean -o allure-report'
         }
+    }
     }
     
 post {
     always {
-        echo 'Publicando reporte Allure en Jenkins...'
-        // Utiliza la sintaxis simple de Allure, con el path de la GENERACIÓN del reporte.
-        // Aquí debes apuntar al directorio de salida que usaste arriba: 'allure-report'
-        allure(report: 'allure-report', results: ['allure-results'])
-    }
+            echo 'Publicando reporte Allure en Jenkins...'
+            
+            // CORRECCIÓN: Usa la sintaxis de lista de Maps (la más robusta y segura)
+            allure([
+                results: [[path: 'allure-results']], // La lista de paths de resultados brutos
+                report: 'allure-report'              // Directorio de la generación final
+            ])
+        }
     failure {
         echo '¡Las pruebas fallaron!'
     }
