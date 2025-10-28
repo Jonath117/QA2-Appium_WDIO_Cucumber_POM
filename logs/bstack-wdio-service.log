@@ -1,0 +1,36 @@
+[90m2025-09-25T13:35:18.283Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m BrowserStack service started with id: 461e4162-8f5c-433f-bbfe-0be3cc170638
+[90m2025-09-25T13:35:18.291Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Sending SDK event with data {
+  userName: '[REDACTED]',
+  accessKey: '[REDACTED]',
+  event_type: 'SDKTestAttempted',
+  detectedFramework: 'WebdriverIO-cucumber',
+  event_properties: {
+    sdkRunId: '461e4162-8f5c-433f-bbfe-0be3cc170638',
+    testhub_uuid: undefined,
+    language_framework: 'WebdriverIO_cucumber',
+    referrer: 'WebdriverIO-cucumber/9.19.1',
+    language: 'WebdriverIO',
+    languageVersion: 'v24.8.0',
+    buildName: 'Build Alarmas',
+    buildIdentifier: 'undefined',
+    os: 'Windows_NT',
+    hostname: 'DESKTOP-8I9L702',
+    productMap: {
+      observability: true,
+      accessibility: null,
+      percy: false,
+      automate: true,
+      app_automate: false
+    },
+    product: [ 'observability', 'automate' ],
+    framework: 'cucumber'
+  }
+}
+[90m2025-09-25T13:35:19.076Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Funnel Event Response: "{\"message\":\"SDK Event recorded successfully\"}"
+[90m2025-09-25T13:35:19.076Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Funnel event success
+[90m2025-09-25T13:35:19.076Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m app is not defined in browserstack-service config, skipping ...
+[90m2025-09-25T13:35:19.078Z[39m [33mWARN[39m [97m@wdio/browserstack-service[39m Accessibility Automation will run only on Chrome browsers.
+[90m2025-09-25T13:35:19.079Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Sending launch start event
+[90m2025-09-25T13:35:20.030Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m [Start_Build] Success response: {"observability":{"success":true,"options":{"allow_screenshots":true},"code":null,"errors":null,"error_trace_id":null},"accessibility":null,"automate":{"success":true,"options":{"allow_screenshots":true},"code":null,"errors":null,"error_trace_id":null},"turboscale":null,"build_hashed_id":"na2qvba0hg36lxzeo4jqr97l0lqvdvdiifm8oe3p","jwt":"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJicm93c2Vyc3RhY2tfb2IiLCJzdWIiOiIxMDE2MDMwOSIsImdyb3VwX2lkIjoxMDA2OTYyOCwidXNlcl9pZCI6MTAxNjAzMDksImJ1aWxkX2hhc2hlZF9pZCI6Im5hMnF2YmEwaGczNmx4emVvNGpxcjk3bDBscXZkdmRpaWZtOG9lM3AiLCJwcm9qZWN0X25hbWUiOiJQcm95ZWN0byBRQSIsImhvb2tfYXNfdGVzdCI6IjEiLCJidWlsZF9uYW1lIjoiQnVpbGQgQWxhcm1hcyIsInByb2R1Y3RfbWFwIjoie1wib2JzZXJ2YWJpbGl0eVwiOnRydWUsXCJhdXRvbWF0ZVwiOnRydWUsXCJvcmlnaW5Gcm9tUHJvZHVjdE1hcFwiOlwiQXV0b21hdGVcIixcImJzdGFja0F1dG9tYXRpb25cIjp0cnVlLFwiY2FkXCI6dHJ1ZSxcIm5vblNES1wiOmZhbHNlLFwiYWNjZXNzaWJpbGl0eUF1dG9FbmFibGVkXCI6dHJ1ZX0iLCJncnJfcmVnaW9uIjoiIiwiaXNfbG93X3ZvbHVtZSI6ZmFsc2UsInNpZ25pbmdfa2V5X2hhc2giOiIzN2MxMTMxZTRiMmU3NDNjNzY2ZTFkNzBiZjVmMmI1N2RjNjliMTk1ZDMwMGUzMmFlOGQwMjMxMjBhNGE2ZDk3IiwiaWF0IjoxNzU4ODA3MzIxLCJleHAiOjE3NTkxNTI5MjF9.U9p8iEt_AldCGN2scYqloGEJOsUXBZt4Scc2INrtzL8","discard_build":null,"app_automate":null}
+[90m2025-09-25T13:35:20.030Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m Testhub started with id: na2qvba0hg36lxzeo4jqr97l0lqvdvdiifm8oe3p
+2025-09-25T13:35:22.185Z DEBUG @wdio/browserstack-service Successfully uploaded performance events Bravo
