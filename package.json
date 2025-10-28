@@ -12,6 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@wdio/allure-reporter": "^9.20.0",
     "@wdio/appium-service": "^9.19.2",
     "@wdio/cli": "^9.19.2",
     "@wdio/cucumber-framework": "^9.19.2",

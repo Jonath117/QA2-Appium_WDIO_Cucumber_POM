@@ -4,9 +4,7 @@ pipeline {
     // ⚠️ Importante: Define las variables de entorno de BrowserStack usando las credenciales de Jenkins
     environment {
         BROWSERSTACK_CREDS = credentials('BROWSERSTACK_CREDS')
-        // Carpeta absoluta para resultados y reportes
-        ALLURE_RESULTS = "${env.WORKSPACE}/allure-results"
-        ALLURE_REPORT  = "${env.WORKSPACE}/allure-report"
+
     }
 
     stages {
@@ -35,30 +33,41 @@ pipeline {
             }
         }
         
-        stage('Generar reporte Allure') {
+        stage('Verificar resultados Allure') {
             steps {
-                echo "Generando reporte Allure..."
-                bat 'npx allure generate allure-results -c -o allure-report'
+                script {
+                    // Validamos si la carpeta allure-results fue generada
+                    if (!fileExists('allure-results')) {
+                        error "❌ No se generó la carpeta allure-results. Verifica la configuración del reporter en wdio.conf.js"
+                    } else {
+                        echo "✅ Carpeta allure-results encontrada."
+                    }
+                }
             }
         }
 
         stage('Publicar reporte Allure en Jenkins') {
             steps {
-                echo "Publicando reporte Allure usando el plugin..."
+                echo "Publicando reporte Allure..."
                 allure([
                     includeProperties: false,
                     jdk: '',
-                    results: [[path: '**/allure-results/*.json']], // <-- patrón agregado
+                    results: [[path: 'allure-results']],
                     reportBuildPolicy: 'ALWAYS'
                 ])
             }
         }
     }
-    
-    
+
     post {
         always {
-            echo 'pipeline finalizada.'
+            echo '✅ Pipeline finalizada.'
+        }
+        failure {
+            echo '❌ El pipeline falló. Revisa los logs en Jenkins.'
+        }
+        success {
+            echo '🎉 Todas las etapas completadas correctamente.'
         }
     }
 
