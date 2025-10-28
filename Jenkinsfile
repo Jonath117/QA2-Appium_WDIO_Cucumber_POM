@@ -27,7 +27,7 @@ pipeline {
                 
                 // ⚠️ Se ejecuta WDIO, que automáticamente usará las variables BROWSERSTACK_USERNAME y BROWSERSTACK_ACCESS_KEY 
                 // definidas en la sección 'environment' del pipeline.
-                bat "set BROWSERSTACK_USERNAME=%BROWSERSTACK_CREDS_USR% && set BROWSERSTACK_ACCESS_KEY=%BROWSERSTACK_CREDS_PSW% && npx wdio run wdio.conf.js"
+                bat "set BROWSERSTACK_USERNAME=%BROWSERSTACK_CREDS_USR%&& set BROWSERSTACK_ACCESS_KEY=%BROWSERSTACK_CREDS_PSW%&& npx wdio run wdio.conf.js"
             }
         }
         
