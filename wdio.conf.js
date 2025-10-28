@@ -51,15 +51,63 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        // capabilities for local Appium web tests on an Android Emulator
-        "platformName": "Android",
-        "appium:platformVersion": "16.0",
-        "appium:deviceName": "Medium Phone API 36.0",
-        "appium:automationName": "UiAutomator2",
-        "appium:appPackage": "com.google.android.deskclock",
-        "appium:appActivity": "com.android.deskclock.DeskClock"
-    }],
+    // capabilities: [{
+    //     // capabilities for local Appium web tests on an Android Emulator
+    //     "platformName": "Android",
+    //     "appium:platformVersion": "16.0",
+    //     "appium:deviceName": "Medium Phone API 36.0",
+    //     "appium:automationName": "UiAutomator2",
+    //     "appium:appPackage": "com.google.android.deskclock",
+    //     "appium:appActivity": "com.android.deskclock.DeskClock"
+    // }],
+    
+// wdio.conf.js (ejemplo)
+    // ...
+    hostname: 'hub.browserstack.com',
+    port: 443, // o 80 para conexiones no seguras
+    // ...
+    
+    // Aquí usamos las variables de entorno para las credenciales
+    user: process.env.BROWSERSTACK_USERNAME,
+    key: process.env.BROWSERSTACK_ACCESS_KEY,
+    
+capabilities: [{
+    // ----------------------------------------------------
+    // 1. Appium Base Cap (Sigue siendo PlatformName)
+    // ----------------------------------------------------
+    "platformName": "Android",
+    
+    // ----------------------------------------------------
+    // 2. BrowserStack Options (Todas las configuraciones del dispositivo)
+    // ----------------------------------------------------
+    'bstack:options': {
+        // Define el dispositivo específico en BrowserStack. 
+        // ¡Este nombre DEBE coincidir con los nombres de dispositivos de BrowserStack!
+        deviceName: 'Samsung Galaxy S22', 
+        platformVersion: '12.0', // Versión del SO
+        
+        // ------------------------------------------------------
+        // 3. ID de la Aplicación (Clave para BrowserStack)
+        // ------------------------------------------------------
+        // DEBES subir tu APK/IPA a BrowserStack y obtener un ID (bs://...)
+        // Si no tienes una APP, BrowserStack usará un navegador móvil.
+        app: 'bs://<Tu_App_ID_de_BrowserStack_Aquí>', 
+        
+        // Opciones adicionales útiles para la ejecución en BrowserStack:
+        projectName: 'Mi Proyecto QA',
+        buildName: 'Pipeline Build Jenkins $BUILD_NUMBER',
+        sessionName: 'Test Login Android',
+        debug: true // Habilita logs detallados
+    },
+    
+    // ----------------------------------------------------
+    // 4. Appium Automation Cap (A menudo innecesario en la nube)
+    // ----------------------------------------------------
+    // 'appium:automationName': 'UiAutomator2' 
+    // Por lo general, BrowserStack lo establece automáticamente.
+    
+}],
+    // ...
 
     //
     // ===================
